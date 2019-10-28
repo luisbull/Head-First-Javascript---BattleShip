@@ -1,2 +1,2 @@
-# Head-First-Javascript---BattleShip
+# Head-First-Javascript-BattleShip
 Javascript exercise
