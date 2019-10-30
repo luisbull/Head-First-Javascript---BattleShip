@@ -27,7 +27,7 @@ const view = {
 // It has properties for the game.
 // It has the logic to find out if there is a Hit or Miss.
 
-var model = {
+let model = {
     boardSize: 7,
     numShips: 3,
     shipLength: 3,
@@ -49,6 +49,11 @@ var model = {
                 ship.hit[index] = "hit"; // hit class added //
                 view.displayHit(location);
                 view.displayMessage("HIT");
+                //we sunk ship?
+                if (this.isSunk(ship)){
+                    view.displayMessage("You sunk this ship")
+                    this.shipsSunk++;
+                }
                 return true;
             }
         }
@@ -56,8 +61,20 @@ var model = {
         view.displayMiss(location);
         view.displayMessage("MISSED"); // miss class added //
         return false;
+    },
+    
+    // Helps to find if ship sunk
+    isSunk: function (ship) {
+        for (let i = 0; i < this.shipLength; i++) {
+            if (ship.hit[i] !== "hit"){
+                return false;
+            }
+        }
+        return true;
     }
 }
 
 model.fire("10")
+model.fire("11")
 model.fire("30")
+model.fire("12")
