@@ -78,3 +78,31 @@ model.fire("10")
 model.fire("11")
 model.fire("30")
 model.fire("12")
+
+
+// Parse Guess //
+// This function check that we have a valid input. 
+function parseGuess(guess) {
+
+    const alphabet = ["A","B","C","D","E","F","G"];
+    
+    if (guess == null || guess.length !== 2){
+        console.log("Please enter a Letter and a Number");        
+    } else {
+        let firstChar = guess.charAt(0);
+        let row = alphabet.indexOf(firstChar);
+        let column = guess.charAt(1);
+        if (isNaN(row) || (isNaN(column))){
+            console.log("Oops, that isn't on the board");            
+        } else if(row < 0 || row >= model.boardSize || column < 0 || column >= model.boardSize){
+            console.log("It's off the screen");
+        } else {
+            return row + column;
+        }
+    }
+    return null;
+}
+
+parseGuess("A0A");
+parseGuess("A8");
+parseGuess("A4");
