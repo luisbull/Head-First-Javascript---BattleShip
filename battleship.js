@@ -74,11 +74,36 @@ let model = {
     }
 }
 
-model.fire("10")
-model.fire("11")
-model.fire("30")
-model.fire("12")
+// model.fire("10")
+// model.fire("11")
+// model.fire("30")
+// model.fire("12")
 
+
+
+// ---------------------------------
+//        CONTROLLER OBJECT
+// ---------------------------------
+// It has properties for the user guess.
+// It has the logic to find out if user entered a valid input.  If it was
+// not valid, user is asked to get one. 
+
+const controller = {
+    guesses: 0,
+
+    processGuess: function (guess) {
+        let location = parseGuess(guess);
+
+        if(location){
+            this.guesses ++;
+            let hit = model.fire(location);
+
+            if (hit && model.shipsSunk === model.numShips){
+                view.displayMessage("Congrats.  You manage to sunk everything in " + this.guesses + " guesses")
+            }
+        }
+    }
+}
 
 // Parse Guess //
 // This function check that we have a valid input. 
@@ -103,6 +128,9 @@ function parseGuess(guess) {
     return null;
 }
 
-parseGuess("A0A");
-parseGuess("A8");
-parseGuess("A4");
+// parseGuess("A0A");
+// parseGuess("A8");
+// parseGuess("A4");
+
+
+
