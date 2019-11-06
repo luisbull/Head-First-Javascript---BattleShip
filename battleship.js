@@ -134,3 +134,46 @@ function parseGuess(guess) {
 
 
 
+// ---------------------------------
+//      Init, Handlers functions
+// ---------------------------------
+
+function init() {
+    let fireButton = document.getElementById("fireButton");
+    fireButton.onclick = handleFireButton;
+    let guessInput = document.getElementById("guessInput");
+    guessInput.onkeypress = handleKeyPress;
+}
+window.onload = init;
+
+// This handles when user click on the "fire" button
+function handleFireButton() {
+    let guessInput = document.getElementById("guessInput");
+    let guess = guessInput.value;
+    controller.processGuess(guess);
+    
+    guessInput.value = "";
+}
+// This handles when user press "enter" key on the keyboard
+function handleKeyPress(e) {
+    let fireButton = document.getElementById("fireButton");
+    if (e.keyCode === 13){
+        fireButton.click();
+        return false;
+    }
+}
+
+
+controller.processGuess("A0");
+controller.processGuess("A02");
+controller.processGuess("02");
+controller.processGuess("A8");
+controller.processGuess("A7");
+controller.processGuess("A6");
+controller.processGuess("A1");
+controller.processGuess("A2");
+controller.processGuess("B1");
+controller.processGuess("B0");
+controller.processGuess("B2");
+controller.processGuess("C0");
+controller.processGuess("C1");
