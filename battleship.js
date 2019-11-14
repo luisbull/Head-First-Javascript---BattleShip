@@ -117,7 +117,7 @@ function parseGuess(guess) {
         let firstChar = guess.charAt(0);
         let row = alphabet.indexOf(firstChar);
         let column = guess.charAt(1);
-        if (isNaN(row) || (isNaN(column))){
+        if (isNaN(row) || isNaN(column)){
             console.log("Oops, that isn't on the board");            
         } else if(row < 0 || row >= model.boardSize || column < 0 || column >= model.boardSize){
             console.log("It's off the screen");
