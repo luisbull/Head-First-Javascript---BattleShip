@@ -71,6 +71,34 @@ let model = {
             }
         }
         return true;
+    },
+    
+    // This randomly generates a vertical or horizontal ship and within the board.
+    generateShip: function () {
+        let direction = Math.floor(Math.random() * 2);
+        let row;
+        let col;
+        if (direction === 1){
+            // horizontal ship
+            row = Math.floor(Math.random() * (this.boardSize - (this.shipLength + 1)));
+            col = Math.floor(Math.random() * this.boardSize);
+            
+        } else {
+            // vertical ship 
+            row = Math.floor(Math.random() * this.boardSize);
+            col = Math.floor(Math.random() * (this.boardSize - (this.shipLength + 1)));
+        }
+
+        let newShipLocations = [];
+
+        for (let i = 0; i < this.shipLength; i++) {
+            if (direction === 1){
+                newShipLocations.push((row + i) + "" + col)
+            } else {
+                newShipLocations.push(row + "" + (col + i));
+            }
+        }
+        return newShipLocations;
     }
 }
 
@@ -164,16 +192,16 @@ function handleKeyPress(e) {
 }
 
 
-controller.processGuess("A0");
-controller.processGuess("A02");
-controller.processGuess("02");
-controller.processGuess("A8");
-controller.processGuess("A7");
-controller.processGuess("A6");
-controller.processGuess("A1");
-controller.processGuess("A2");
-controller.processGuess("B1");
-controller.processGuess("B0");
-controller.processGuess("B2");
-controller.processGuess("C0");
-controller.processGuess("C1");
+// controller.processGuess("A0");
+// controller.processGuess("A02");
+// controller.processGuess("02");
+// controller.processGuess("A8");
+// controller.processGuess("A7");
+// controller.processGuess("A6");
+// controller.processGuess("A1");
+// controller.processGuess("A2");
+// controller.processGuess("B1");
+// controller.processGuess("B0");
+// controller.processGuess("B2");
+// controller.processGuess("C0");
+// controller.processGuess("C1");
