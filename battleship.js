@@ -34,9 +34,9 @@ let model = {
     shipsSunk: 0,
     
     ships: [ // ships locations in the grid        
-        {locations: ["00","01","02"], hit: ["","",""]},
-        {locations: ["10","11","12"], hit: ["","",""]},
-        {locations: ["20","21","22"], hit: ["","",""]}
+        {locations: ["0","0","0"], hit: ["","",""]},
+        {locations: ["0","0","0"], hit: ["","",""]},
+        {locations: ["0","0","0"], hit: ["","",""]}
     ],
 
     fire: function (location) {
@@ -73,6 +73,17 @@ let model = {
         return true;
     },
     
+    // This will generate new ships locations as long as there isn't any ship collision
+    generateShipLocations: function () {
+        let newLocations;
+        for (let i = 0; i < this.numShips; i++) {
+            do {
+                newLocations = this.generateShip();
+            } while (this.collision(newLocations));
+            this.ships[i].locations = newLocations;
+        }
+    },
+
     // This randomly generates a vertical or horizontal ship and within the board.
     generateShip: function () {
         let direction = Math.floor(Math.random() * 2);
